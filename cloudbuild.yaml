@@ -1,18 +1,22 @@
 options:
   logging: CLOUD_LOGGING_ONLY
 
-# http://us-central1-docker.pkg.dev/faizan-k8s/k8s-assignment
-
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     id: 'IMAGE_BUILD'
-    args: ['build', '--no-cache', '-t', 'gcr.io/faizan-k8s/k8s-assignment/container-one:latest', '.']
+    args: ['build', '--no-cache', '-t', 'us-central1-docker.pkg.dev/faizan-k8s/k8s-assignment/container-one:latest', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
     id: 'IMAGE_PUSH'
-    args: ['push', 'gcr.io/faizan-k8s/k8s-assignment/container-one:latest']
+    args: ['push', 'us-central1-docker.pkg.dev/faizan-k8s/k8s-assignment/container-one:latest']
 
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'gcr.io/cloud-builders/kubectl'
     id: 'IMAGE_DEPLOY'
-    args: ['run', 'deploy', 'container-one', '--image', 'gcr.io/faizan-k8s/k8s-assignment/container-one', '--platform', 'managed', '--region', 'us-central1']
+    env: [CLOUDSDK_CONTAINER_CLUSTER=faizan-k8s-gke, 'CLOUDSDK_COMPUTE_ZONE=us-central1']
+    args: ['apply', '-f', 'deployment.yaml']
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: 'IMAGE_EXPOSE'
+    env: [CLOUDSDK_CONTAINER_CLUSTER=faizan-k8s-gke, 'CLOUDSDK_COMPUTE_ZONE=us-central1']
+    args: ['rollout', 'restart', 'deployment', 'image-1-deployment']
     

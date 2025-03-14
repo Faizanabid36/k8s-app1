@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: image-1-deployment
+  labels:
+    app: image-1
+
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: image-1
+  template:
+    metadata:
+      labels:
+        app: image-1
+    spec:
+      containers:
+      - name: image-1-container
+        image: us-central1-docker.pkg.dev/faizan-k8s/k8s-assignment/container-one:latest
+        volumeMounts:
+        - mountPath: /faizan_PV_dir
+          name: standard-volume
+      volumes:
+      - name: standard-volume
+        persistentVolumeClaim:
+          claimName: k8s-persistent-volume
