@@ -1,0 +1,19 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+# http://us-central1-docker.pkg.dev/faizan-k8s/k8s-assignment
+
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'IMAGE_BUILD'
+    args: ['build', '--no-cache', '-t', 'gcr.io/faizan-k8s/k8s-assignment/container-one:latest', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'IMAGE_PUSH'
+    args: ['push', '--al-tags', 'gcr.io/faizan-k8s/k8s-assignment/container-one:latest']
+
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'IMAGE_DEPLOY'
+    args: ['run', 'deploy', 'container-one', '--image', 'gcr.io/faizan-k8s/k8s-assignment/container-one', '--platform', 'managed', '--region', 'us-central1']
+    
