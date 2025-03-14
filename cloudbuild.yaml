@@ -10,7 +10,7 @@ steps:
 
   - name: 'gcr.io/cloud-builders/docker'
     id: 'IMAGE_PUSH'
-    args: ['push', '--all-tags', 'gcr.io/faizan-k8s/k8s-assignment/container-one:latest']
+    args: ['push', 'gcr.io/faizan-k8s/k8s-assignment/container-one:latest']
 
 
   - name: 'gcr.io/cloud-builders/gcloud'
