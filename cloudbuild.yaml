@@ -16,11 +16,6 @@ steps:
     args: ['apply', '-f', 'deployment.yaml']
 
   - name: 'gcr.io/cloud-builders/kubectl'
-    id: 'IMAGE_EXPOSE'
-    env: [CLOUDSDK_CONTAINER_CLUSTER=faizan-k8s-gke, 'CLOUDSDK_COMPUTE_ZONE=us-central1']
-    args: ['rollout', 'restart', 'deployment', 'image-1-deployment']
-
-  - name: 'gcr.io/cloud-builders/kubectl'
     id: 'IMAGE_SERVICE'
     env: [CLOUDSDK_CONTAINER_CLUSTER=faizan-k8s-gke, 'CLOUDSDK_COMPUTE_ZONE=us-central1']
     args: ['apply', '-f', 'service.yaml']
@@ -29,4 +24,9 @@ steps:
     id: 'IMAGE_CONNECTOR'
     env: [CLOUDSDK_CONTAINER_CLUSTER=faizan-k8s-gke, 'CLOUDSDK_COMPUTE_ZONE=us-central1']
     args: ['apply', '-f', 'connector.yaml']
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: 'IMAGE_EXPOSE'
+    env: [CLOUDSDK_CONTAINER_CLUSTER=faizan-k8s-gke, 'CLOUDSDK_COMPUTE_ZONE=us-central1']
+    args: ['rollout', 'restart', 'deployment', 'image-1-deployment']
     
