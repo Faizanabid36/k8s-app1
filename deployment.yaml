@@ -16,7 +16,6 @@ spec:
     metadata:
       labels:
         app: image-1
-
     spec:
       containers:
         - name: image-1-container
