@@ -18,6 +18,10 @@ function isValidCSV(content) {
   );
 }
 
+app.get('/', (req, res) => {
+  res.send('Hello from the server side!');
+});
+
 app.post('/calculate', async (req, res) => {
   const { file, product } = req.body;
 
@@ -70,7 +74,7 @@ app.post('/store-file', (req, res) => {
   if (!file) {
     return res.status(400).json({
       file: null,
-      error: "Invalid JSON input."
+      error: 'Invalid JSON input.',
     });
   }
 
@@ -79,13 +83,13 @@ app.post('/store-file', (req, res) => {
     if (err) {
       return res.status(500).json({
         file: file,
-        error: "Error while storing the file to the storage."
+        error: 'Error while storing the file to the storage.',
       });
     }
 
     res.status(200).json({
       file: file,
-      message: "Success."
+      message: 'Success.',
     });
   });
 });
