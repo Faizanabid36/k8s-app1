@@ -18,10 +18,6 @@ function isValidCSV(content) {
   );
 }
 
-app.get('/', (req, res) => {
-  res.send('Hello from the server side!');
-});
-
 app.post('/calculate', async (req, res) => {
   const { file, product } = req.body;
 
@@ -32,7 +28,7 @@ app.post('/calculate', async (req, res) => {
     });
   }
 
-  const filePath = path.join(__dirname + '/app/', file);
+  const filePath = path.join('/faizan_PV_dir/', file);
   if (!fs.existsSync(filePath)) {
     return res.status(404).json({
       file,
@@ -51,7 +47,7 @@ app.post('/calculate', async (req, res) => {
     }
 
     const response = await axios.post(
-      'http://container_two:8000/calculate-data',
+      'http://container2-service:8000/calculate-data',
       {
         file,
         product,
@@ -78,7 +74,7 @@ app.post('/store-file', (req, res) => {
     });
   }
 
-  const filePath = path.join(__dirname, file);
+  const filePath = path.join('/faizan_PV_dir/', file);
   fs.writeFile(filePath, data.replace(/\\n/g, '\n'), (err) => {
     if (err) {
       return res.status(500).json({
