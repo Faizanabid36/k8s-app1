@@ -4,7 +4,7 @@ options:
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     id: 'IMAGE_BUILD'
-    args: ['build', '--no-cache', '-t', 'us-central1-docker.pkg.dev/faizan-k8s/k8s-assignment/container-one:latest', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/faizan-k8s/k8s-assignment/container-one:latest', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
     id: 'IMAGE_PUSH'
