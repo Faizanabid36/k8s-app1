@@ -39,6 +39,8 @@ app.post('/calculate', async (req, res) => {
   try {
     const fileContent = fs.readFileSync(filePath, 'utf-8');
 
+    console.log('fileContent', fileContent);
+
     if (!isValidCSV(fileContent)) {
       return res.status(400).json({
         file,

@@ -5,10 +5,10 @@ metadata:
   name: container1-service
 
 spec:
+  type: LoadBalancer
   selector:
     app: image-1
   ports:
     - protocol: TCP
       port: 6000
       targetPort: 6000
-  type: LoadBalancer
