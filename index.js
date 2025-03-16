@@ -55,6 +55,7 @@ app.post('/calculate', async (req, res) => {
         product,
       }
     );
+    console.log({response})
     return res.json(response.data);
   } catch (error) {
     return res.status(500).json({
