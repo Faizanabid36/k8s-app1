@@ -62,7 +62,6 @@ app.post('/calculate', async (req, res) => {
       file,
       error: 'An error occurred while processing the file.',
       des: error.message,
-      ddd: error.response,
     });
   }
 });
