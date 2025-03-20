@@ -6,7 +6,6 @@ metadata:
   labels:
     app: image-1
 
-
 spec:
   replicas: 1
   selector:
