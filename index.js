@@ -78,7 +78,7 @@ app.post('/store-file', (req, res) => {
   const cleanedData = data
     .replace(/\\n/g, '\n')
     .split('\n')
-    .map((line) => line.trim())
+    .map((line) => line.replaceAll(" ", ""))
     .filter((line) => line.length > 0)
     .join('\n');
 
