@@ -55,12 +55,12 @@ app.post('/calculate', async (req, res) => {
         product,
       }
     );
-    console.log({response})
+    console.log({ response });
     return res.json(response.data);
   } catch (error) {
     return res.status(500).json({
       file,
-      error: 'An error occurred while processing the file.'
+      error: 'An error occurred while processing the file.',
     });
   }
 });
@@ -75,8 +75,15 @@ app.post('/store-file', (req, res) => {
     });
   }
 
+  const cleanedData = data
+    .replace(/\\n/g, '\n')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0)
+    .join('\n');
+
   const filePath = path.join('/faizan_PV_dir/', file);
-  fs.writeFile(filePath, data.replace(/\\n/g, '\n'), (err) => {
+  fs.writeFile(filePath, cleanedData, (err) => {
     if (err) {
       return res.status(500).json({
         file: file,
