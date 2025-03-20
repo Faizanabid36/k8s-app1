@@ -60,8 +60,7 @@ app.post('/calculate', async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       file,
-      error: 'An error occurred while processing the file.',
-      des: error.message,
+      error: 'An error occurred while processing the file.'
     });
   }
 });
