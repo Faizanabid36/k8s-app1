@@ -76,11 +76,11 @@ app.post('/store-file', (req, res) => {
   }
 
   const cleanedData = data
-    .replace(/\\n/g, '\n')
-    .split('\n')
-    .map((line) => line.replaceAll(" ", ""))
-    .filter((line) => line.length > 0)
-    .join('\n');
+    ?.replace(/\\n/g, '\n')
+    ?.split('\n')
+    ?.map((line) => line?.replaceAll(" ", ""))
+    ?.filter((line) => line.length > 0)
+    ?.join('\n');
 
   const filePath = path.join('/faizan_PV_dir/', file);
   fs.writeFile(filePath, cleanedData, (err) => {
