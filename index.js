@@ -48,6 +48,8 @@ app.post('/calculate', async (req, res) => {
       });
     }
 
+    console.log('calling api')
+
     const response = await axios.post(
       'http://container2-service:8000/calculate-data',
       {
@@ -61,6 +63,8 @@ app.post('/calculate', async (req, res) => {
     return res.status(500).json({
       file,
       error: 'An error occurred while processing the file.',
+      message: error.message,
+      c: 'one'
     });
   }
 });
